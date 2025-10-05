@@ -158,7 +158,7 @@
       const perksPool = folder.perks.slice();
       const selectedPerks = [];
       if(juggernogOn){
-        const jIdx = perksPool.findIndex(p => p.toLowerCase().includes('juggernog'));
+        const jIdx = perksPool.findIndex(p => p.toLowerCase().includes(currentFolder == "bo4" ? 'dying_wish' : 'juggernog'));
         if(jIdx !== -1){ selectedPerks.push(perksPool.splice(jIdx,1)[0]); }
       }
       const remaining = 4 - selectedPerks.length;
@@ -191,6 +191,8 @@
         document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
         tab.classList.add('active');
         currentFolder = tab.dataset.folder;
+        const jugBtn = document.getElementById('juggernogBtn');
+        jugBtn.innerHTML = currentFolder == "bo4" ? "Dying Wish" : "Juggernog";
         render();
       });
     });
